@@ -1,7 +1,7 @@
 body {
     color: #000000;
     background: #EEEEEE;
-    font: 1.1em "Times New Roman";
+    font: 0.8em "Palatino";
     line-height: 1.2;
     margin: 40px 0;
 }
@@ -17,32 +17,46 @@ body {
 h1 {
     text-transform: uppercase;
     text-align: center;
-    font-size: 200%;
+    font-size: 130%;
     margin: 0;
     padding: 0;
+    color: #882111;
 }
 h2 {
-    border-bottom: 1px solid #000000;
     text-transform: uppercase;
-    font-size: 130%;
+    font-size: 110%;
     margin: 1em 0 0 0;
     padding: 0;
+    color: #882111;
 }
 h3 {
     font-size: 100%;
+    margin: 0.5em 0 0.3em 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+h4 {
+    font-size: 90%;
     margin: 0.8em 0 0.3em 0;
     padding: 0;
     display: flex;
     justify-content: space-between;
 }
+h4 + p {
+    font-size: 90%;
+}
 p {
     margin: 0 0 0.5em 0;
     padding: 0;
-    }
+}
 ul {
     padding: 0;
     margin: 0 1.5em;
-    }
+}
+li {
+    margin-bottom: 0.5em;
+}
 /* ul immediately after h1 = contact list */
 h1 + ul {
     text-align: center;
@@ -66,7 +80,7 @@ h1 + ul + p {
 }
 @media print {
     body {
-        font-size: 10pt;
+        font-size: 9pt;
         margin: 0;
         padding: 0;
         background: none;
