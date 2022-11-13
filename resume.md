@@ -23,7 +23,7 @@ hand -->
 Routable is a platform that allows its users to send and receive business-to-business payments.
 
  - Worked on a feature that allowed customers with multiple accounts to switch between them without having to re-authenticate.
- - Worked on a project to introduce per-client subdomain URLs. E.g: client.app.com. Making it easier for customers with multiple accounts, for example, account firms, to have multiple sessions in parallel. Migrated 100% of customers from the generic top level domain to their custom subdomains seamlessly without re-authentication.
+ - Worked on a project to introduce per-client subdomain URLs. E.g: client.app.com. Making it easier for customers with multiple accounts, for example, accounting firms, to have multiple sessions in parallel. Migrated 100% of customers from the generic top level domain to their custom subdomains seamlessly without re-authentication.
 
 #### Technical Environment
 Python, Django, Django REST Framework, PostgreSQL, Celery, Redis, React, Redux. 
@@ -63,8 +63,10 @@ Python, Django, Celery, Scrapy.
 ## Education
 
 ### <span>Catholic University “Nuestra Señora de la Asunción”; Asunción, Paraguay</span> <span>2008 -- 2014</span>
+BSc. Computer Science
 
   - Teaching Assistant for Computer Architecture 
     - State Machines, Combinational Logic, Sequential logic, MIPS, Verilog
   - Teaching Assistant - Database Systems
     - Database Theory, Relational Algebra, SQL
+
