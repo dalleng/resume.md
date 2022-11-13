@@ -83,6 +83,12 @@ h1 + ul > li:last-child:after {
 h1 + ul + p {
     margin: 1em 0;
 }
+/* Make links black in PDF */
+/* Move this outside the print block to apply this in HTML too */
+a, a:link, a:visited, a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
 @media print {
     body {
         font-size: 9pt;
@@ -102,12 +108,6 @@ h1 + ul + p {
     abbr {
         text-decoration: none;
         font-variant: none;
-    }
-    /* Make links black in PDF */
-    /* Move this outside the print block to apply this in HTML too */
-    a, a:link, a:visited, a:hover {
-        color: #000000;
-        text-decoration: underline;
     }
 }
 @page {
