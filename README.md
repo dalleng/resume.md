@@ -1,28 +1,12 @@
 # resume.md
 
-![Resume](resume.png)
-
-Write your resume in
-[Markdown](https://raw.githubusercontent.com/mikepqr/resume.md/main/resume.md),
-style it with [CSS](resume.css), output to [HTML](resume.html) and
-[PDF](resume.pdf).
-
-## Prerequisites
-
- - Python ≥ 3.6
- - [python-markdown](https://python-markdown.github.io/) (`pip install
-   markdown`)
- - Optional, required for PDF output: Google Chrome or Chromium
+Fork of the awesome https://github.com/mikepqr/resume.md
 
 ## Usage
 
- 1. Download [resume.py](resume.py), [resume.md](resume.md) and
-    [resume.css](resume.css) (or make a copy of this repository by [using the
-    template](https://github.com/mikepqr/resume.md/generate), forking, or
-    cloning).
+ 1. `pip install -r requirements.txt`
 
- 2. Edit [resume.md](resume.md) (the placeholder text is taken with thanks from
-    the [JSON Resume Project](https://jsonresume.org/themes/))
+ 2. Edit [resume.md](resume.md) 
 
  3. Run `python3 resume.py` to build resume.html and resume.pdf.
 
