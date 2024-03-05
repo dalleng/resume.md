@@ -23,8 +23,8 @@ hand -->
 Routable is a platform that allows its users to send and receive business-to-business payments.
 
  
- - Developed the [Quickswitch](https://docs.routable.com/en/articles/5830914-switching-between-routable-accounts) feature enabling seamless toggling between multiple accounts without having to re-authenticate.
- - Worked on a project to introduce [client workspace URLs](https://docs.routable.com/en/articles/6313469-customizing-your-workspace-name-and-url). E.g: client.app.com. Making it easier for customers with multiple accounts, for example, accounting firms, to have multiple sessions in parallel. Migrated 100% of customers from the generic top level domain to their custom subdomains seamlessly without re-authentication.
+ - Developed the [Quickswitch](https://web.archive.org/web/20230924163637/https://docs.routable.com/en/articles/5830914-switching-between-routable-accounts) feature enabling seamless toggling between multiple accounts without having to re-authenticate.
+ - Worked on a project to introduce [client workspace URLs](https://web.archive.org/web/20231002223642/https://docs.routable.com/en/articles/6313469-customizing-your-workspace-name-and-url). E.g: client.app.com. Making it easier for customers with multiple accounts, for example, accounting firms, to have multiple sessions in parallel. Migrated 100% of customers from the generic top level domain to their custom subdomains seamlessly without re-authentication.
 
 #### Technical Environment
 Python, Django, Django REST Framework, PostgreSQL, Celery, Redis, React, Redux. 
