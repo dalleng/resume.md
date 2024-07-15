@@ -27,7 +27,7 @@ Routable is a platform that allows its users to send and receive business-to-bus
  - Developed the [Quickswitch](https://web.archive.org/web/20230924163637/https://docs.routable.com/en/articles/5830914-switching-between-routable-accounts) feature enabling seamless toggling between multiple accounts without having to re-authenticate.
  - Worked on a project to introduce [client workspace URLs](https://web.archive.org/web/20231002223642/https://docs.routable.com/en/articles/6313469-customizing-your-workspace-name-and-url). E.g: client.app.com. Making it easier for customers with multiple accounts, for example, accounting firms, to have multiple sessions in parallel. Migrated 100% of customers from the generic top level domain to their custom subdomains seamlessly without re-authentication.
 #### Technical Environment
-Python, Django, Django REST Framework, PostgreSQL, Celery, Redis, React, Redux. 
+Python, Django, Django REST Framework, FastAPI, PostgreSQL, Celery, Redis, Javascript, Typescript, React, Redux. 
 
 ### <span>Software Engineer, [Paladin](https://www.joinpaladin.com/)</span> <span>Jun 2017 -- Aug 2021</span>
 
@@ -39,7 +39,7 @@ Paladin is a Pro Bono management SaaS. The platform allows companies and law fir
 - Added end to end testing to the CI pipeline to ensure the proper behavior of core workflows inside the app and catch regressions. Used Docker and docker-compose to recreate the backend environment and to run the e2e test runner.
 
 #### Technical Environment
-Python, Django, PostgreSQL, Celery, React, Material UI, GraphQL, Heroku, AWS S3, Docker, CircleCI.
+Python, Django, PostgreSQL, Celery, Javascript, React, Material UI, GraphQL, Heroku, AWS S3, Docker, CircleCI.
 
 ### <span>Software Engineer, Canopy via [Toptal](https://www.toptal.com/)</span> <span>Feb 2017 - Mar 2018</span>
 
