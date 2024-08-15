@@ -18,7 +18,7 @@ adaptive variants. -->
 
 <!-- You have to wrap the "left" and "right" half of these headings in spans by
 hand -->
-### <span>Senior Software Engineeer, [Routable Inc.](https://routable.com)</span> <span>Sept 2021 -- Present</span>
+### <span>Senior Software Engineeer, [Routable Inc.](https://routable.com)</span> <span>Sept 2021 -- April 2024</span>
 
 Routable is a platform that allows its users to send and receive business-to-business payments.
 
