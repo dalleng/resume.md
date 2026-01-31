@@ -18,6 +18,17 @@ adaptive variants. -->
 
 <!-- You have to wrap the "left" and "right" half of these headings in spans by
 hand -->
+### <span>Senior Software Engineeer, [BrightHire Inc.](https://brighthire.com/) (acquired by Zoom)</span> <span>Jan 2025 -- Present</span>
+BrightHire is an interview intelligence platform that records, transcribes, and analyzes hiring interviews to help teams make better, more consistent hiring decisions.
+
+- **Optimized backend performance and database** — Systematically identified and resolved N+1 queries, moved high-traffic queries to read replicas, introduced cursor-based pagination on high-volume endpoints for efficient large result set traversal lowering overall QPS and improving response times. Built an internal SQL debug tool that hooks into SQLAlchemy to capture per-request queries with timing, stack traces, and automatic N+1 detection, backed by Redis and surfaced
+  via an admin UI.
+- **Built and maintained ATS integrations** — Developed and improved integrations with Greenhouse, Merge, Gem, Workday, and Ashby.
+- **Delivered end-to-end product features** — Shipped chat notifications for Msft Teams, notetaker white-labeling (self-service display name and image), Microsoft Teams integration (admin configuration, auto-open, pinned app) — spanning backend, GraphQL API, and frontend.
+
+#### Technical Environment
+Python, Flask, SQLAlchemy, PostgreSQL, Redis, Google Cloud, GraphQL, Typescript, React.
+
 ### <span>Senior Software Engineeer, [Routable Inc.](https://routable.com)</span> <span>Sept 2021 -- April 2024</span>
 
 Routable is a platform that allows its users to send and receive business-to-business payments.
