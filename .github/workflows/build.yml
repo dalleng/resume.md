@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Install markdown
         run: pip3 install markdown
       - name: Make resume
         run: python3 resume.py --debug
       - name: Archive resume.html and resume.pdf
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
+          name: resume.pdf
           path: |
             *.pdf
             *.html
