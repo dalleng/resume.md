@@ -21,11 +21,11 @@ hand -->
 ### <span>Senior Software Engineeer, [BrightHire Inc.](https://brighthire.com/) (acquired by Zoom)</span> <span>Jan 2025 -- Present</span>
 BrightHire is an interview intelligence platform that records, transcribes, and analyzes hiring interviews to help teams make better, more consistent hiring decisions.
 
+- **Tech lead for a new standalone ATS sync service:** Led a small team extracting ATS syncing out of the monolith into its own service and database, isolating sync workloads from an application database approaching the capacity ceiling of GCP's largest Cloud SQL tier.
+- **Designed a resilient, observable sync engine:** Two-phase syncs stage raw API responses to GCS before ingesting into Postgres, so any sync can be replayed and debugged against exactly what the ATS returned, with rate-limit-aware pacing and per-page failure visibility backed by full sync-run history.
+- **Migrated Greenhouse off its deprecated Harvest v1/v2 API to v3** Designed a v1-shaped facade over a v3 data mirror, letting all existing business logic run unchanged while syncing 400+ clients with 45M API requests to Greenhouse monthly.
 - **Improved backend performance and database efficiency:** Identified and eliminated N+1 queries, moved high-traffic reads to replicas, and introduced cursor-based pagination on high-volume endpoints—reducing overall QPS and improving response times.
 - **Built internal SQL performance tooling:** Developed a SQLAlchemy-based debug tool that captures per-request queries with timing, stack traces, and automatic N+1 detection; backed by Redis and exposed via an internal admin UI.
-- **Built and maintained ATS integrations:** Developed and improved integrations with Greenhouse, Merge, Gem, Workday, and Ashby.
-- **Delivered end-to-end product features:** Built and shipped Microsoft Teams integrations including chat notifications and configurable app behavior (auto-open, pinned app).
-Implemented notetaker white-labeling with self-service display name and image configuration.
 
 #### Technical Environment
 Python, Flask, SQLAlchemy, PostgreSQL, Redis, Google Cloud, GraphQL, Typescript, React.
