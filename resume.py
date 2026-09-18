@@ -5,10 +5,12 @@ import itertools
 import logging
 import os
 import re
+import signal
 import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 import markdown
 
@@ -119,6 +121,31 @@ def make_html(md: str, prefix: str = "resume") -> str:
     )
 
 
+def is_complete_pdf(path: str) -> bool:
+    """Return whether path looks like a completely written PDF file."""
+    try:
+        with open(path, "rb") as pdffp:
+            if pdffp.read(5) != b"%PDF-":
+                return False
+            pdffp.seek(0, os.SEEK_END)
+            size = pdffp.tell()
+            pdffp.seek(max(0, size - 1024))
+            return pdffp.read().rstrip().endswith(b"%%EOF")
+    except OSError:
+        return False
+
+
+def terminate_process_group(process: subprocess.Popen) -> None:
+    """Terminate a process and the isolated helper processes it started."""
+    try:
+        if os.name == "posix":
+            os.killpg(process.pid, signal.SIGTERM)
+        elif process.poll() is None:
+            process.terminate()
+    except ProcessLookupError:
+        pass
+
+
 def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
     """
     Write html to prefix.pdf
@@ -132,9 +159,8 @@ def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
         # Keep both versions of this option for backwards compatibility
         # https://developer.chrome.com/docs/chromium/new-headless.
         "--no-pdf-header-footer",
-        "--enable-logging=stderr",
-        "--log-level=2",
-        "--in-process-gpu",
+        "--no-first-run",
+        "--disable-background-networking",
         "--disable-gpu",
     ]
 
@@ -149,26 +175,74 @@ def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
     tmpdir = tempfile.mkdtemp(prefix="resume.md_")
     options.append(f"--crash-dumps-dir={tmpdir}")
     options.append(f"--user-data-dir={tmpdir}")
+    temporary_pdf = os.path.join(tmpdir, "resume.pdf")
+    destination_pdf = f"{prefix}.pdf"
+    command = [
+        chrome,
+        *options,
+        f"--print-to-pdf={temporary_pdf}",
+        "data:text/html;base64," + html64.decode("utf-8"),
+    ]
 
     try:
-        subprocess.run(
-            [
-                chrome,
-                *options,
-                f"--print-to-pdf={prefix}.pdf",
-                "data:text/html;base64," + html64.decode("utf-8"),
-            ],
-            check=True,
-        )
-        logging.info(f"Wrote {prefix}.pdf")
-    except subprocess.CalledProcessError as exc:
-        if exc.returncode == -6:
-            logging.warning(
-                "Chrome died with <Signals.SIGABRT: 6> "
-                f"but you may find {prefix}.pdf was created successfully."
+        # Chrome occasionally writes a valid PDF but fails to exit on macOS.
+        # Capture its noisy diagnostics and stop only this isolated process once
+        # the complete PDF has been flushed to disk.
+        with tempfile.TemporaryFile(mode="w+", encoding="utf-8") as chrome_log:
+            process = subprocess.Popen(
+                command,
+                stdout=chrome_log,
+                stderr=subprocess.STDOUT,
+                start_new_session=os.name == "posix",
             )
-        else:
-            raise exc
+            deadline = time.monotonic() + 30
+            pdf_complete = False
+            timed_out = False
+
+            while process.poll() is None:
+                pdf_complete = is_complete_pdf(temporary_pdf)
+                if pdf_complete:
+                    try:
+                        process.wait(timeout=0.5)
+                    except subprocess.TimeoutExpired:
+                        pass
+                    break
+                if time.monotonic() >= deadline:
+                    timed_out = True
+                    break
+                time.sleep(0.05)
+
+            terminate_process_group(process)
+            try:
+                returncode = process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                if os.name == "posix":
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                else:
+                    process.kill()
+                returncode = process.wait()
+
+            pdf_complete = pdf_complete or is_complete_pdf(temporary_pdf)
+            chrome_log.seek(0)
+            chrome_output = chrome_log.read().strip()
+
+        if chrome_output:
+            logging.debug("Chrome output:\n%s", chrome_output)
+
+        if not pdf_complete:
+            if chrome_output:
+                logging.error("Chrome output:\n%s", chrome_output)
+            if timed_out:
+                raise subprocess.TimeoutExpired([chrome, "--headless"], 30)
+            raise subprocess.CalledProcessError(
+                returncode, [chrome, "--headless", "--print-to-pdf"]
+            )
+
+        os.replace(temporary_pdf, destination_pdf)
+        logging.info(f"Wrote {destination_pdf}")
     finally:
         shutil.rmtree(tmpdir, ignore_errors=True)
         if os.path.isdir(tmpdir):
